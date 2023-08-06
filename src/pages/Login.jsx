@@ -46,7 +46,7 @@ export default function Login({ setUserToken, setuserId }) {
     <main>
       <div className="container ">
         <div className="login">
-          <h1>Login</h1>
+          <h1>Log in</h1>
 
           <form onSubmit={handleSubmit}>
             <input

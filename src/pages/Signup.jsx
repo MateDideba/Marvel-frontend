@@ -46,7 +46,7 @@ export default function Signup({ setUserToken, setuserId }) {
     <main>
       <div className="container">
         <div className="signup">
-          <h1>Signup</h1>
+          <h1>Sign up</h1>
 
           <form onSubmit={handleSubmit}>
             <input
