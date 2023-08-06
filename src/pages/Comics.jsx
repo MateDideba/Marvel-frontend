@@ -30,7 +30,7 @@ export default function Comics({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `site--marvvel-backend--pt5gh4cp8hgd.code.run/comics?page=${currentPage}&title=${searchWord}`
+          `https://site--marvvel-backend--pt5gh4cp8hgd.code.run/comics?page=${currentPage}&title=${searchWord}`
         );
         setData(response.data);
         const sortByName = response.data.results.sort((a, b) => {

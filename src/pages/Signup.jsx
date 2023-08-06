@@ -21,7 +21,7 @@ export default function Signup({ setUserToken, setuserId }) {
     } else {
       try {
         const { data } = await axios.post(
-          "site--marvvel-backend--pt5gh4cp8hgd.code.run/signup",
+          "https://site--marvvel-backend--pt5gh4cp8hgd.code.run/signup",
           {
             username,
             email,
@@ -46,7 +46,7 @@ export default function Signup({ setUserToken, setuserId }) {
     <main>
       <div className="container">
         <div className="signup">
-          <h1>S'inscrire</h1>
+          <h1>Signup</h1>
 
           <form onSubmit={handleSubmit}>
             <input

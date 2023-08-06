@@ -19,7 +19,7 @@ export default function Login({ setUserToken, setuserId }) {
     } else {
       try {
         const { data } = await axios.post(
-          "site--marvvel-backend--pt5gh4cp8hgd.code.run/login",
+          "https://site--marvvel-backend--pt5gh4cp8hgd.code.run/login",
           {
             email: email,
             password: password,
@@ -46,7 +46,7 @@ export default function Login({ setUserToken, setuserId }) {
     <main>
       <div className="container ">
         <div className="login">
-          <h1>Se connecter</h1>
+          <h1>Login</h1>
 
           <form onSubmit={handleSubmit}>
             <input

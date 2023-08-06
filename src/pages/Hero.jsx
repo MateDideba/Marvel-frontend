@@ -15,7 +15,7 @@ export default function Hero() {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          `site--marvvel-backend--pt5gh4cp8hgd.code.run/comics/${id}`
+          `https://site--marvvel-backend--pt5gh4cp8hgd.code.run/comics/${id}`
         );
         setHeroComicses(data.comics);
         setIsLoading(false);

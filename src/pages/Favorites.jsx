@@ -13,7 +13,7 @@ export default function Favorites({ userId, updateFav }) {
         const fetchData = async () => {
           try {
             const response = await axios.get(
-              `site--marvvel-backend--pt5gh4cp8hgd.code.run/favorites?id=${userId}`
+              `https://site--marvvel-backend--pt5gh4cp8hgd.code.run/favorites?id=${userId}`
             );
 
             setFavorisData(response.data);

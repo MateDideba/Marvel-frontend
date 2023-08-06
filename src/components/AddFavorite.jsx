@@ -19,7 +19,7 @@ export default function AddFavorite({
     try {
       if (!added) {
         const response = await axios.post(
-          "site--marvvel-backend--pt5gh4cp8hgd.code.run/favorite/add",
+          "https://site--marvvel-backend--pt5gh4cp8hgd.code.run/favorite/add",
           {
             id,
             name,
@@ -36,7 +36,7 @@ export default function AddFavorite({
         setadded(!added);
       } else {
         const response = await axios.delete(
-          "site--marvvel-backend--pt5gh4cp8hgd.code.run/favorite/delete",
+          "https://site--marvvel-backend--pt5gh4cp8hgd.code.run/favorite/delete",
           {
             headers: {
               authorization: `Bearer ${token}`,
