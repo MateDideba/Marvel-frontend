@@ -10,7 +10,10 @@ export default function Header({ userToken, setUserToken, setuserId }) {
       <div className="container header-block">
         <Link to="/">
           <div>
-            <img src="src/assets/marvel-logo.svg" alt="" />
+            <img
+              src="https://cdn.registerdisney.go.com/v4/asset/bundler/MARVEL/v4/images/v1/marvel-logo.svg"
+              alt=""
+            />
           </div>
         </Link>
         <div className="navigation">
