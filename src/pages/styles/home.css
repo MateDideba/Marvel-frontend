@@ -1,0 +1,50 @@
+.hero-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px;
+  margin-bottom: 50px;
+  padding: 10px;
+}
+.hero-card {
+  border: black 2px solid;
+  width: 254px;
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.hero-card img {
+  width: 250px;
+  height: 260px;
+}
+
+.description {
+  padding-top: 10px;
+  height: 125px;
+  width: 100%;
+  overflow: scroll;
+  text-align: justify;
+  background-color: aliceblue;
+  padding: 4px 4px;
+}
+
+.hero-card h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px;
+  color: white;
+}
+
+.hero-card button {
+  background-color: rgba(255, 0, 0, 0.742);
+  color: white;
+  height: 30px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.hero-card button:hover {
+  background-color: red;
+  cursor: pointer;
+}

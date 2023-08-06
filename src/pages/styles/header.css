@@ -1,0 +1,82 @@
+.header-block {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+  background-color: black;
+}
+
+.navigation {
+  width: 600px;
+
+  display: flex;
+  gap: 40px;
+}
+
+.navigation a {
+  border: 2px red solid;
+  width: 300px;
+  color: white;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  background-color: rgba(255, 0, 0, 0.505);
+}
+
+.header-block img {
+  width: 200px;
+  height: 80px;
+}
+
+.authent-block {
+  width: 300px;
+
+  display: flex;
+  gap: 20px;
+}
+
+.authent-block a {
+  color: white;
+}
+
+.authent-block div {
+  border: 2px red solid;
+  width: 300px;
+  color: white;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  background-color: rgba(255, 0, 0, 0.505);
+}
+
+.authent-block button {
+  width: 300px;
+  font-family: inherit;
+}
+
+.to-authent-block {
+  width: 300px;
+
+  display: flex;
+  gap: 20px;
+}
+
+.to-authent-block div {
+  border: 2px red solid;
+  width: 300px;
+  color: white;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  background-color: rgba(255, 0, 0, 0.505);
+}
+
+.to-authent-block a {
+  color: white;
+}

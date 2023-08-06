@@ -1,0 +1,42 @@
+.search {
+  background-color: black;
+
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-container {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+}
+
+.dropdown:empty {
+  border: none;
+}
+
+.dropdown-row {
+  cursor: pointer;
+  text-align: start;
+  margin: 2px 0;
+}
+
+.search-inner input {
+  width: 800px;
+  height: 40px;
+}
+
+.search-inner {
+  display: flex;
+}
