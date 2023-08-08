@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./styles/comics.css";
 import axios from "axios";
+import "./styles/hero.css";
 
 export default function Hero() {
   const [HeroComicses, setHeroComicses] = useState({});
@@ -30,10 +31,10 @@ export default function Hero() {
   return isLoading ? (
     <div>Loading...</div>
   ) : (
-    <div className="container ">
+    <div className="container hero-block">
       {HeroComicses.map((comics) => {
         return (
-          <div key={comics._id}>
+          <div className="hero-card" key={comics._id}>
             <div>
               <img
                 src={

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./styles/favorites.css";
 
 export default function Favorites({ userId, updateFav }) {
   const [favorisData, setFavorisData] = useState([]);
