@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./styles/home.css";
@@ -8,25 +8,29 @@ import AddFavorite from "../components/AddFavorite";
 import SearchBar from "../components/SearchBar";
 
 export default function Home({
+  setdata,
+  setUserfavList,
+  UserfavList,
   userToken,
   userId,
   updateFav,
   setUpdateFav,
   searchWord,
-  setsearchWord,
 }) {
   const [isLoading, setIsLoading] = useState(true);
   const [value, setValue] = useState("");
   const [data, setData] = useState([]);
   const [searchreq, setsearchreq] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const divRef = useRef(null);
 
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected + 1);
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    divRef.current.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  console.log(searchWord);
+  //console.log(searchWord);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,6 +38,7 @@ export default function Home({
           `https://site--marvvel-backend--pt5gh4cp8hgd.code.run/characters?page=${currentPage}&name=${searchWord}`
         );
         setData(response.data);
+        setdata(response.data);
 
         setIsLoading(false);
       } catch (error) {
@@ -48,12 +53,7 @@ export default function Home({
     <div>Loading...</div>
   ) : (
     <main>
-      <SearchBar
-        data={data.results}
-        searchWord={searchWord}
-        setsearchWord={setsearchWord}
-      />
-      <div className="container hero-block">
+      <div className="container hero-block" ref={divRef}>
         {data.results.map((hero) => {
           return (
             <div className="hero-card" key={hero._id}>
@@ -69,16 +69,18 @@ export default function Home({
                     className="hero-image"
                   />
                 </div>
-                <h2>Name : {hero.name}</h2>
+                <h2>{hero.name}</h2>
                 <div className="description">
                   {hero.description ? (
-                    <p> Description : {hero.description}</p>
+                    <p>{hero.description}</p>
                   ) : (
                     <p>No description</p>
                   )}
                 </div>
               </Link>
               <AddFavorite
+                setUserfavList={setUserfavList}
+                UserfavList={UserfavList}
                 updateFav={updateFav}
                 setUpdateFav={setUpdateFav}
                 userId={userId}
@@ -97,7 +99,7 @@ export default function Home({
         })}
       </div>
 
-      <div>
+      <div className="paginate-bloc">
         <ReactPaginate
           pageCount={Math.ceil(data.count / data.limit)}
           onPageChange={handlePageChange}
@@ -106,6 +108,7 @@ export default function Home({
           activeLinkClassName="active"
           previousClassName="prev-next"
           nextClassName="prev-next"
+          breakLinkClassName="brpoints"
         />
       </div>
     </main>

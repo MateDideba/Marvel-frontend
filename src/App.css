@@ -1,12 +1,31 @@
 .container {
-  width: 1280px;
+  width: calc(100vw - 100px);
   margin: 0 auto;
-  border: 2px black solid;
+  height: 600px;
+  overflow: scroll;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
 }
 
 body {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  background-color: black;
+  background-image: url("https://wallpaper-house.com/data/out/10/wallpaper2you_427905.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-size: cover;
+  position: relative;
+  height: 100vh;
+  background-blend-mode: darken;
+
+  overflow-x: hidden;
+}
+
+.paginate-bloc {
+  background-color: rgb(13, 14, 14);
+  padding-top: 28px;
 }
 
 .pagination {
@@ -14,9 +33,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 5rem;
+  padding: 26px;
   font-size: 1.2rem;
   gap: 5px;
+  color: white;
 }
 .pagination .page-num {
   padding: 8px 15px;
@@ -26,18 +46,22 @@ body {
   color: white;
 }
 
+.brpoints {
+  color: white;
+}
+
 .pagination .page-num:hover {
-  background-color: aqua;
+  background-color: red;
 }
 
 .pagination .active {
-  background-color: aqua;
+  background-color: red;
 }
 
 .prev-next {
   cursor: pointer;
   padding: 8px 15px;
-  background-color: aqua;
+  background-color: red;
   font-weight: 400;
   border-radius: 3px;
 }
@@ -45,4 +69,14 @@ body {
 a {
   text-decoration: none;
   color: black;
+}
+
+@media screen and (max-width: 890px) {
+  .page-num {
+    display: none;
+  }
+}
+
+:root {
+  background-color: black;
 }

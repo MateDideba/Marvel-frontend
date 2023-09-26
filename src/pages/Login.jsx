@@ -4,7 +4,12 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import "./styles/login.css";
 
-export default function Login({ setUserToken, setuserId }) {
+export default function Login({
+  setUserToken,
+  setuserId,
+  updateFav,
+  setUpdateFav,
+}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -26,14 +31,17 @@ export default function Login({ setUserToken, setuserId }) {
           }
         );
 
-        console.log(data._id);
+        //console.log(data._id);
         // enregistrer le cookie
         Cookies.set("token", data.token);
         Cookies.set("id", data._id);
 
         // changer la valeur du state
+
         setUserToken(data.token);
         setuserId(data._id);
+        setUpdateFav(!updateFav);
+
         // naviguer vers la page d'accueil
         navigate("/");
       } catch (error) {
@@ -75,7 +83,7 @@ export default function Login({ setUserToken, setuserId }) {
               }}
             />
 
-            <button>Se connecter</button>
+            <button>Log in</button>
 
             {errorMessage && <p>{errorMessage}</p>}
           </form>

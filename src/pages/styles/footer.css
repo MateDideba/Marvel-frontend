@@ -1,0 +1,15 @@
+footer {
+  background-color: black;
+  position: -webkit-sticky;
+  position: relative;
+  bottom: 0;
+
+  padding: 50px;
+  font-size: 20px;
+  border-top: 2px red solid;
+}
+
+footer p {
+  color: white;
+  text-align: center;
+}

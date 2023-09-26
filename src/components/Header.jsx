@@ -1,13 +1,25 @@
 import "../pages/styles/header.css";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SearchBar from "./SearchBar";
+export default function Header({
+  userToken,
+  setUserToken,
+  setuserId,
+  setUserfavList,
+  data,
+  searchWord,
+  setsearchWord,
+}) {
+  const location = useLocation();
 
-export default function Header({ userToken, setUserToken, setuserId }) {
   const navigate = useNavigate();
+
   return (
     <header>
-      <div className="container header-block">
+      <div className="header-block">
         <Link to="/">
           <div>
             <img
@@ -17,40 +29,60 @@ export default function Header({ userToken, setUserToken, setuserId }) {
           </div>
         </Link>
         <div className="navigation">
-          <Link to="/">Characters</Link>
-          <Link to="/comics">Comics</Link>
+          <ul>
+            <li className={location.pathname === "/" ? "active" : null}>
+              <Link to="/">Characters</Link>{" "}
+            </li>
+            <li className={location.pathname === "/comics" ? "active" : null}>
+              <Link to="/comics">
+                Comics{" "}
+                <FontAwesomeIcon icon="bars" style={{ color: "#fb1818" }} />
+              </Link>
+            </li>
+            {userToken && (
+              <li
+                className={location.pathname === "/favorites" ? "active" : null}
+              >
+                <Link to="/favorites">Favoris</Link>
+              </li>
+            )}
+          </ul>
         </div>
         <div>
           {userToken ? (
             <div className="authent-block">
-              <div className="FavBt">
-                <Link to="/favorites">Favoris</Link>
-              </div>
               <button
                 className="disconnectBt"
                 onClick={() => {
                   setUserToken("");
                   setuserId("");
+                  setUserfavList([]);
 
                   Cookies.remove("token");
                   Cookies.remove("id");
                   navigate("/");
                 }}
               >
-                Se déconnecter
+                Sing out
               </button>
             </div>
           ) : (
             <div className="to-authent-block">
               <div className="sinLog">
-                <Link to="/signup">S'inscrire</Link>
+                <Link to="/signup">Sing up</Link>
               </div>
               <div className="sinLog">
-                <Link to="/login">Se connecter</Link>
+                <Link to="/login">Log in</Link>
               </div>
             </div>
           )}
         </div>
+        <SearchBar
+          location={location.pathname}
+          data={data.results}
+          searchWord={searchWord}
+          setsearchWord={setsearchWord}
+        />
       </div>
     </header>
   );

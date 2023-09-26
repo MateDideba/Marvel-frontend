@@ -1,7 +1,9 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function AddFavorite({
+  UserfavList,
+  setUserfavList,
   name,
   description,
   path,
@@ -11,13 +13,11 @@ export default function AddFavorite({
   setUpdateFav,
   updateFav,
 }) {
-  const [added, setadded] = useState(false);
-
+  const [added, setadded] = useState({});
   const handleClick = async () => {
-    setUpdateFav(!updateFav);
-
     try {
-      if (!added) {
+      if (!UserfavList.includes(id)) {
+        console.log("here added");
         const response = await axios.post(
           "https://site--marvvel-backend--pt5gh4cp8hgd.code.run/favorite/add",
           {
@@ -32,9 +32,12 @@ export default function AddFavorite({
             },
           }
         );
-        console.log(response.data);
-        setadded(!added);
+        //console.log(response.data);
+
+        setUserfavList([]);
+        setUpdateFav(!updateFav);
       } else {
+        console.log("here removed ");
         const response = await axios.delete(
           "https://site--marvvel-backend--pt5gh4cp8hgd.code.run/favorite/delete",
           {
@@ -48,14 +51,17 @@ export default function AddFavorite({
           }
         );
 
-        console.log(response.data);
-        setadded(!added);
+        //console.log(response.data);
+
+        setUserfavList([]);
+        setUpdateFav(!updateFav);
       }
     } catch (error) {
       alert(error.response.data.message);
     }
   };
-  return !added ? (
+
+  return !UserfavList.includes(id) ? (
     <button onClick={handleClick}> Add to favorite </button>
   ) : (
     <button onClick={handleClick}> Remove from Favorite </button>

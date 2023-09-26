@@ -2,32 +2,38 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./styles/favorites.css";
+import RemoveFavorite from "../components/RemoveFavorite";
 
-export default function Favorites({ userId, updateFav }) {
+export default function Favorites({
+  userId,
+  updateFav,
+  token,
+  setUpdateFav,
+  setUserfavList,
+}) {
   const [favorisData, setFavorisData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  //get favorite list at first rendering
+  //get favorite list at first rendering   setUserfavList={setUserfavList}
+
   try {
-    {
-      useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await axios.get(
-              `https://site--marvvel-backend--pt5gh4cp8hgd.code.run/favorites?id=${userId}`
-            );
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(
+            `https://site--marvvel-backend--pt5gh4cp8hgd.code.run/favorites?id=${userId}`
+          );
 
-            setFavorisData(response.data);
+          setFavorisData(response.data);
 
-            setIsLoading(false);
-          } catch (error) {
-            console.log(error);
-          }
-        };
+          setIsLoading(false);
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
-        fetchData();
-      }, [updateFav]);
-    }
+      fetchData();
+    }, [updateFav]);
   } catch (error) {
     console.log(error);
   }
@@ -36,6 +42,7 @@ export default function Favorites({ userId, updateFav }) {
     <div>Loading...</div>
   ) : (
     <main>
+      <h1 className="fav-title">Your Favorites of Marvel</h1>
       <div className="container fav-block">
         {favorisData.map((favitem) => {
           return (
@@ -51,6 +58,14 @@ export default function Favorites({ userId, updateFav }) {
               {favitem.favDescription && (
                 <p> Description : {favitem.favDescription}</p>
               )}
+              <RemoveFavorite
+                setUserfavList={setUserfavList}
+                id={favitem.favId}
+                userId={userId}
+                updateFav={updateFav}
+                token={token}
+                setUpdateFav={setUpdateFav}
+              />
             </div>
           );
         })}

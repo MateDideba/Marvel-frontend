@@ -1,51 +1,20 @@
-.hero-block {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 80px;
-  margin-bottom: 50px;
-  padding: 10px;
-}
-.hero-card {
-  border: black 2px solid;
-  width: 254px;
-  height: 480px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.description {
-  padding-top: 10px;
-  height: 125px;
-  width: 100%;
-  overflow: scroll;
-  text-align: justify;
-  background-color: aliceblue;
-  padding: 0px 4px;
-}
-
-.hero-card h2 {
+.hero-comics-card h2 {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 5px;
-  color: white;
+  color: black;
 }
 
-.hero-card button {
-  background-color: rgba(255, 0, 0, 0.742);
-  color: white;
+.hero-comics-card p {
+  color: black;
 }
 
-.hero-card button {
-  background-color: rgba(255, 0, 0, 0.742);
-  color: white;
-  height: 30px;
-  border: none;
-  font-size: 16px;
-  font-weight: bold;
+.crsl {
+  width: 400px;
+  margin: auto;
 }
 
-.hero-card button:hover {
-  background-color: red;
-  cursor: pointer;
+.title-desc {
+  background-color: white;
+  padding: 10px;
 }

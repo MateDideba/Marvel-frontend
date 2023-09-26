@@ -2,47 +2,63 @@
   display: flex;
   flex-wrap: wrap;
   gap: 80px;
-  margin-bottom: 50px;
+
   padding: 10px;
 }
+
 .comics-card {
-  border: black 2px solid;
+  margin: 0 auto;
+  border: red 2px solid;
   width: 254px;
   height: 480px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: rgb(211, 211, 211);
+  border-radius: 6px;
 }
 
-.description {
-  padding-top: 10px;
+.comics-card:hover {
+  margin-top: -5px;
+}
+
+.comics-card img {
+  width: 100%;
+  height: 260px;
+  border-radius: 2px;
+  border: red solid 2px;
+}
+
+.comics-card .description {
   height: 125px;
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
+
   text-align: justify;
-  background-color: aliceblue;
-  padding: 0px 4px;
+  background-color: rgb(211, 211, 211);
+  padding: 8px;
+}
+
+.comics-card .description::-webkit-scrollbar {
+  display: none;
 }
 
 .comics-card h2 {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 5px;
-  color: white;
+  color: black;
+  text-align: center;
 }
 
 .comics-card button {
   background-color: rgba(255, 0, 0, 0.742);
   color: white;
-}
-
-.comics-card button {
-  background-color: rgba(255, 0, 0, 0.742);
-  color: white;
-  height: 30px;
+  height: 40px;
   border: none;
   font-size: 16px;
   font-weight: bold;
+  transition: 0.3s ease-in-out;
 }
 
 .comics-card button:hover {

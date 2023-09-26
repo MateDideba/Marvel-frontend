@@ -1,15 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./styles/comics.css";
 import ReactPaginate from "react-paginate";
 
-import SearchBar from "../components/SearchBar";
 import AddFavorite from "../components/AddFavorite";
 
 export default function Comics({
+  UserfavList,
+  setUserfavList,
   searchWord,
-  setsearchWord,
+  setdata,
   userId,
   userToken,
   updateFav,
@@ -19,11 +20,13 @@ export default function Comics({
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortedData, setsortedData] = useState([]);
+  const divRef = useRef(null);
 
   const handlePageChange = (selectedPage) => {
-    console.log(selectedPage.selected);
+    //console.log(selectedPage.selected);
     setCurrentPage(selectedPage.selected + 1);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    divRef.current.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -32,6 +35,7 @@ export default function Comics({
         const response = await axios.get(
           `https://site--marvvel-backend--pt5gh4cp8hgd.code.run/comics?page=${currentPage}&title=${searchWord}`
         );
+        setdata(response.data);
         setData(response.data);
         const sortByName = response.data.results.sort((a, b) => {
           return a.title.localeCompare(b.name);
@@ -40,6 +44,7 @@ export default function Comics({
         setsortedData(sortByName);
 
         setIsLoading(false);
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
       } catch (error) {
         console.log(error);
       }
@@ -52,13 +57,7 @@ export default function Comics({
     <div>Loading...</div>
   ) : (
     <main>
-      <SearchBar
-        from="/comics"
-        data={data.results}
-        searchWord={searchWord}
-        setsearchWord={setsearchWord}
-      />
-      <div className="container comics-block">
+      <div className="container comics-block" ref={divRef}>
         {sortedData.map((comics) => {
           return (
             <div className="comics-card" key={comics._id}>
@@ -73,7 +72,7 @@ export default function Comics({
                   className="hero-image"
                 />
               </div>
-              <h2>Name : {comics.title}</h2>
+              <h2>{comics.title}</h2>
               <div className="description">
                 {comics.description ? (
                   <p>{comics.description}</p>
@@ -82,6 +81,8 @@ export default function Comics({
                 )}
               </div>
               <AddFavorite
+                setUserfavList={setUserfavList}
+                UserfavList={UserfavList}
                 updateFav={updateFav}
                 setUpdateFav={setUpdateFav}
                 userId={userId}
@@ -100,7 +101,7 @@ export default function Comics({
         })}
       </div>
 
-      <div>
+      <div className="paginate-bloc">
         <ReactPaginate
           pageCount={Math.ceil(data.count / data.limit)}
           onPageChange={handlePageChange}
@@ -109,6 +110,7 @@ export default function Comics({
           activeLinkClassName="active"
           previousClassName="prev-next"
           nextClassName="prev-next"
+          breakLinkClassName="brpoints"
         />
       </div>
     </main>

@@ -87,7 +87,7 @@ export default function Signup({ setUserToken, setuserId }) {
               }}
             />
 
-            <button>S'inscrire</button>
+            <button>Sign in</button>
 
             {errorMessage && <p>{errorMessage}</p>}
           </form>

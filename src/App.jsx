@@ -1,35 +1,77 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+library.add(faBars);
 import Cookies from "js-cookie";
 import axios from "axios";
 import "./App.css";
 
 import Home from "./pages/Home";
-import Hero from "./pages/Hero";
+import HeroComics from "./pages/HeroComics";
 import Header from "./components/Header";
 import Comics from "./pages/Comics";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Favorites from "./pages/Favorites";
+import Footer from "./components/Footer";
 
 function App() {
   const [userToken, setUserToken] = useState(Cookies.get("token") || "");
   const [userId, setuserId] = useState(Cookies.get("id") || "");
   const [updateFav, setUpdateFav] = useState(false);
   const [searchWord, setsearchWord] = useState("");
+  const [UserfavList, setUserfavList] = useState([]);
+  const [data, setdata] = useState([]);
 
-  return (
+  const [isLoading, setisLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (userId) {
+          const response = await axios.get(
+            `https://site--marvvel-backend--pt5gh4cp8hgd.code.run/favorites?id=${userId}`
+          );
+
+          const favIdList = [...UserfavList];
+          response.data.map((fav) => {
+            favIdList.push(fav.favId);
+          });
+          setUserfavList(favIdList);
+          setisLoading(false);
+        } else {
+          setisLoading(false);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [updateFav]);
+
+  return isLoading ? (
+    <div>Loading...</div>
+  ) : (
     <Router>
       <Header
+        searchWord={searchWord}
+        setsearchWord={setsearchWord}
+        data={data}
         userToken={userToken}
         setUserToken={setUserToken}
         setuserId={setuserId}
+        setUserfavList={setUserfavList}
       />
       <Routes>
         <Route
           path="/"
           element={
             <Home
+              setdata={setdata}
+              setUserfavList={setUserfavList}
+              UserfavList={UserfavList}
               userToken={userToken}
               userId={userId}
               setUpdateFav={setUpdateFav}
@@ -43,6 +85,9 @@ function App() {
           path="/comics"
           element={
             <Comics
+              setdata={setdata}
+              setUserfavList={setUserfavList}
+              UserfavList={UserfavList}
               userToken={userToken}
               userId={userId}
               setUpdateFav={setUpdateFav}
@@ -52,20 +97,38 @@ function App() {
             />
           }
         />
-        <Route path="hero/:id/" element={<Hero />} />
+        <Route path="hero/:id/" element={<HeroComics />} />
         <Route
           path="/signup"
           element={<Signup setUserToken={setUserToken} setuserId={setuserId} />}
         />
         <Route
           path="/login"
-          element={<Login setUserToken={setUserToken} setuserId={setuserId} />}
+          element={
+            <Login
+              setUserToken={setUserToken}
+              setuserId={setuserId}
+              updateFav={updateFav}
+              setUpdateFav={setUpdateFav}
+            />
+          }
         />
         <Route
           path="/favorites"
-          element={<Favorites userId={userId} updateFav={updateFav} />}
+          element={
+            <Favorites
+              setdata={setdata}
+              setUserfavList={setUserfavList}
+              UserfavList={UserfavList}
+              token={userToken}
+              userId={userId}
+              setUpdateFav={setUpdateFav}
+              updateFav={updateFav}
+            />
+          }
         />
       </Routes>
+      <Footer />
     </Router>
   );
 }
