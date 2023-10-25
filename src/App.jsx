@@ -1,8 +1,12 @@
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-library.add(faBars);
+import {
+  faBars,
+  faMagnifyingGlass,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(faBars, faMagnifyingGlass, faXmark);
 import Cookies from "js-cookie";
 import axios from "axios";
 import "./App.css";
@@ -51,6 +55,8 @@ function App() {
     fetchData();
   }, [updateFav]);
 
+  const baseLocation = location.pathname.match(/\/.*\//);
+
   return isLoading ? (
     <div>Loading...</div>
   ) : (
@@ -64,6 +70,7 @@ function App() {
         setuserId={setuserId}
         setUserfavList={setUserfavList}
       />
+
       <Routes>
         <Route
           path="/"

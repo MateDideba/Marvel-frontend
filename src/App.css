@@ -1,7 +1,7 @@
 .container {
   width: calc(100vw - 100px);
   margin: 0 auto;
-  height: 600px;
+  height: 800px;
   overflow: scroll;
 }
 
@@ -14,18 +14,15 @@ body {
   background-image: url("https://wallpaper-house.com/data/out/10/wallpaper2you_427905.jpg");
   background-position: center;
   background-repeat: no-repeat;
-
   background-size: cover;
-  position: relative;
-  height: 100vh;
-  background-blend-mode: darken;
 
   overflow-x: hidden;
+  margin-top: 100px;
 }
 
 .paginate-bloc {
   background-color: rgb(13, 14, 14);
-  padding-top: 28px;
+  padding-top: 10px;
 }
 
 .pagination {

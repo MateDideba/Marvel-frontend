@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./styles/comics.css";
+
 import axios from "axios";
-import "./styles/hero.css";
+import "./styles/hero-comics.css";
 import "../../node_modules/react-responsive-carousel/lib/styles/carousel.min.css";
 
 //import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -36,7 +36,14 @@ export default function HeroComics() {
     <div>Loading...</div>
   ) : (
     <div className="hero-comics-block">
-      <Carousel className="crsl">
+      <h1>Related Comics</h1>
+      <Carousel
+        className="crsl"
+        autoPlay={true}
+        showThumbs={false}
+        showIndicators={false}
+        useKeyboardArrows={true}
+      >
         {HeroComicses.map((comics) => {
           return (
             <div className="hero-comics-card" key={comics._id}>
@@ -53,7 +60,13 @@ export default function HeroComics() {
               </div>
               <div className="title-desc">
                 <h2>{comics.title}</h2>
-                {comics.description && <p>{comics.description}</p>}
+                <div>
+                  {comics.description ? (
+                    <p>{comics.description}</p>
+                  ) : (
+                    <p>No description</p>
+                  )}
+                </div>
               </div>
             </div>
           );

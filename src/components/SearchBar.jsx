@@ -19,7 +19,7 @@ export default function SearchBar({
   };
 
   return (
-    <div className="search container ">
+    <div className="search">
       <div className="search-container">
         <div className="search-inner">
           {location === "/" ? (
@@ -37,7 +37,9 @@ export default function SearchBar({
               onChange={onChange}
             />
           ) : null}
+          <FontAwesomeIcon className="glass" icon="magnifying-glass" />
         </div>
+        {/*---------------- dropDown----------------------- */}
         <div className="dropdown">
           {data &&
             data

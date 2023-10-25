@@ -8,13 +8,13 @@
   padding: 50px;
 }
 
-.login h1 {
+/* .login h1 {
   width: 300px;
   font-size: 24px;
   text-align: center;
   color: white;
   margin-bottom: 10px;
-}
+} */
 
 .login form {
   display: flex;
@@ -36,4 +36,9 @@
   color: white;
   border: none;
   border-radius: 4px;
+  cursor: pointer;
+}
+
+.login form button:active {
+  background-color: rgba(255, 0, 0, 0.59);
 }

@@ -23,6 +23,8 @@ export default function Home({
   const [searchreq, setsearchreq] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const divRef = useRef(null);
+  const searchWordAdapted = searchWord.replace(/\([^)]*\)?/g, "");
+  console.log(searchWordAdapted);
 
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected + 1);
@@ -35,10 +37,15 @@ export default function Home({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://site--marvvel-backend--pt5gh4cp8hgd.code.run/characters?page=${currentPage}&name=${searchWord}`
+          `https://site--marvvel-backend--pt5gh4cp8hgd.code.run/characters?page=${currentPage}&name=${searchWordAdapted}`
         );
-        setData(response.data);
-        setdata(response.data);
+        if (response.data.legnth != 0) {
+          setData(response.data);
+          setdata(response.data);
+        } else {
+          setData("no Results");
+          setdata("no Results");
+        }
 
         setIsLoading(false);
       } catch (error) {
@@ -54,49 +61,51 @@ export default function Home({
   ) : (
     <main>
       <div className="container hero-block" ref={divRef}>
-        {data.results.map((hero) => {
-          return (
-            <div className="hero-card" key={hero._id}>
-              <Link to={`/hero/${hero._id}`}>
-                <div>
-                  <img
-                    src={
+        {data != undefined
+          ? data.results.map((hero) => {
+              return (
+                <div className="hero-card" key={hero._id}>
+                  <Link to={`/hero/${hero._id}`}>
+                    <div>
+                      <img
+                        src={
+                          hero.thumbnail.path +
+                          "/portrait_xlarge." +
+                          hero.thumbnail.extension
+                        }
+                        alt="HeroImage"
+                        className="hero-image"
+                      />
+                    </div>
+                    <h2>{hero.name}</h2>
+                    <div className="description">
+                      {hero.description ? (
+                        <p>{hero.description}</p>
+                      ) : (
+                        <p>No description</p>
+                      )}
+                    </div>
+                  </Link>
+                  <AddFavorite
+                    setUserfavList={setUserfavList}
+                    UserfavList={UserfavList}
+                    updateFav={updateFav}
+                    setUpdateFav={setUpdateFav}
+                    userId={userId}
+                    id={hero._id}
+                    name={hero.name}
+                    description={hero.description}
+                    path={
                       hero.thumbnail.path +
                       "/portrait_xlarge." +
                       hero.thumbnail.extension
                     }
-                    alt="HeroImage"
-                    className="hero-image"
+                    token={userToken}
                   />
                 </div>
-                <h2>{hero.name}</h2>
-                <div className="description">
-                  {hero.description ? (
-                    <p>{hero.description}</p>
-                  ) : (
-                    <p>No description</p>
-                  )}
-                </div>
-              </Link>
-              <AddFavorite
-                setUserfavList={setUserfavList}
-                UserfavList={UserfavList}
-                updateFav={updateFav}
-                setUpdateFav={setUpdateFav}
-                userId={userId}
-                id={hero._id}
-                name={hero.name}
-                description={hero.description}
-                path={
-                  hero.thumbnail.path +
-                  "/portrait_xlarge." +
-                  hero.thumbnail.extension
-                }
-                token={userToken}
-              />
-            </div>
-          );
-        })}
+              );
+            })
+          : null}
       </div>
 
       <div className="paginate-bloc">

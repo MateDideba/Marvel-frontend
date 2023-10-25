@@ -1,0 +1,61 @@
+.crsl {
+  width: 30%;
+  min-width: 300px;
+  margin: auto;
+  border: red 2px solid;
+  margin-bottom: 80px;
+  height: 600px;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+.carousel .control-prev.control-arrow {
+  height: 320px; /* Set the desired height for the previous arrow */
+}
+
+.carousel .control-arrow.control-next {
+  height: 320px; /* Set the desired height for the next arrow */
+}
+h1 {
+  color: white;
+  text-align: center;
+  font-size: 48px;
+  padding: 10px;
+  margin: 10px;
+}
+.title-desc h2 {
+  font-size: 14pt;
+  font-weight: bold;
+  padding: 10px;
+  background-color: rgba(128, 128, 128, 0.621);
+  border-top: red 3px solid;
+}
+
+.hero-comics-card {
+  position: relative;
+}
+
+.hero-comics-card img {
+  height: 320px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  width: 100%;
+  background-color: black;
+}
+
+.title-desc div {
+  height: 170px;
+
+  overflow: scroll;
+  padding: 5px;
+  text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+  .crsl {
+    border: red 2px solid;
+
+    background-color: #ffffff;
+    border-radius: 8px;
+  }
+}

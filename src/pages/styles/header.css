@@ -1,21 +1,41 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  background-color: black;
+  top: 0;
+}
+
 .header-block {
+  width: 100%;
+
   margin: 0px 20px;
   display: flex;
   justify-content: space-between;
   padding: 10px;
   align-items: center;
   background-color: inherit;
-
   flex-wrap: wrap;
 }
-.header-block div:first-child {
-  margin-right: 5px;
+
+.header-block button {
+  height: 64px;
+  width: 150px;
+
+  object-fit: contain;
 }
 
+.menu {
+  /* border: 2px red solid; */
+  width: calc(100% - 200px);
+  display: flex;
+  justify-content: space-between;
+}
 .navigation ul {
-  margin-left: 90px;
-
-  width: 650px;
+  /* border: 2px yellow solid; */
+  gap: 20px;
   display: flex;
   justify-content: space-around;
 }
@@ -47,7 +67,7 @@
   width: 30%;
 
   height: 4px;
-  background: rgb(201, 201, 225);
+  background: rgb(23, 23, 216);
   position: absolute;
   bottom: -6px;
   left: 0px;
@@ -62,10 +82,15 @@
 
   display: flex;
   gap: 20px;
+  justify-content: flex-end;
 }
 
 .authent-block a {
   color: white;
+}
+
+.authent-block button:hover {
+  cursor: pointer;
 }
 
 .authent-block button {
@@ -78,13 +103,9 @@
   align-items: center;
   border-radius: 2px;
   background-color: rgba(128, 128, 128, 0.711);
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-
+  margin-left: 16px;
   font-size: 16px;
-}
-
-.authent-block button:hover {
-  cursor: pointer;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .to-authent-block {
@@ -110,6 +131,18 @@
   color: white;
 }
 
+#mobile i {
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+#mobile {
+  display: none;
+}
+/* ------------responsive-part(1160px)---------------------- */
 @media screen and (max-width: 1160px) {
   .navigation ul {
     width: fit-content;
@@ -122,23 +155,84 @@
 
   .authent-block button {
     width: 150px;
+    transition: 0.3s;
   }
 }
-
+/* ---------responsive-Mobile------------------- */
 @media screen and (max-width: 890px) {
-  .authent-block {
-    display: flex;
-    justify-content: center;
+  #mobile {
+    display: block;
+    position: fixed;
+    right: 20px;
+    top: 40px;
   }
+
+  .menu {
+    /* border: 2px red solid; */
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: fixed;
+    z-index: 1;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    top: 180px;
+    right: -200px;
+    width: 200px;
+    height: calc(100vh - 340px);
+    background-color: black;
+    box-shadow: 20px 10px 60px red;
+    padding: 40px 20px 0 10px;
+  }
+
+  .menu.active {
+    right: 0;
+  }
+
   .navigation ul {
-    display: none;
+    border: 2px yellow solid;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .authentification-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .authent-block {
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100px;
   }
 
   .authent-block button {
+    margin-left: 0;
     width: 100px;
   }
 
   .to-authent-block {
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .to-authent-block div {
+    width: 100px;
+  }
+  .dropdown {
     display: none;
+  }
+
+  #mobile {
+    display: block;
+    margin-right: 30px;
   }
 }

@@ -2,21 +2,19 @@
   display: flex;
   flex-wrap: wrap;
   gap: 80px;
-  border: yellow solid 2px;
-  padding: 40px;
+  padding: 10px;
 }
-.fav-title {
-  font-size: 48px;
-  color: white;
-  text-align: center;
-}
+
 .fav-card {
+  margin: 0 auto;
   border: red 2px solid;
   width: 254px;
   height: 480px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: rgb(211, 211, 211);
+  border-radius: 6px;
 }
 
 .fav-card img {
@@ -26,34 +24,47 @@
   border: red solid 2px;
 }
 
-.fav-card p {
-  padding-top: 10px;
+.fav-card .description {
   height: 125px;
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
   text-align: justify;
-  background-color: aliceblue;
-  padding: 0px 4px;
+  background-color: rgb(211, 211, 211);
+  padding: 8px;
+  margin-bottom: 5px;
+
+  border-radius: 2px;
+}
+
+.fav-card .description::-webkit-scrollbar {
+  display: none;
 }
 
 .fav-card h2 {
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 5px;
-  color: white;
-}
 
+  padding: 10px;
+  color: black;
+  text-align: center;
+  background-color: rgb(211, 211, 211);
+
+  /* border-radius: 10px; */
+}
 .fav-card button {
   background-color: rgba(255, 0, 0, 0.742);
   color: white;
-  height: 30px;
+  height: 40px;
   border: none;
   font-size: 16px;
   font-weight: bold;
-  transition: 0.3s ease-in-out;
 }
 
 .fav-card button:hover {
-  background-color: red;
   cursor: pointer;
+  background-color: red;
+}
+
+.fav-card button:active {
+  background-color: rgba(255, 0, 0, 0.59);
 }

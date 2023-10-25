@@ -54,10 +54,15 @@ export default function Favorites({
                   className="fav-image"
                 />
               </div>
-              <h2>Name : {favitem.favName}</h2>
-              {favitem.favDescription && (
-                <p> Description : {favitem.favDescription}</p>
-              )}
+              <h2>{favitem.favName}</h2>
+              <div className="description">
+                {favitem.favDescription ? (
+                  <p>{favitem.favDescription}</p>
+                ) : (
+                  <p>No description</p>
+                )}
+              </div>
+
               <RemoveFavorite
                 setUserfavList={setUserfavList}
                 id={favitem.favId}
