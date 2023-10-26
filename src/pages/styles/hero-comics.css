@@ -16,13 +16,7 @@
 .carousel .control-arrow.control-next {
   height: 320px; /* Set the desired height for the next arrow */
 }
-h1 {
-  color: white;
-  text-align: center;
-  font-size: 48px;
-  padding: 10px;
-  margin: 10px;
-}
+
 .title-desc h2 {
   font-size: 14pt;
   font-weight: bold;

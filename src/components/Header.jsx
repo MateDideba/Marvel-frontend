@@ -14,8 +14,10 @@ export default function Header({
   data,
   searchWord,
   setsearchWord,
+  username,
+  setUsername,
 }) {
-  const [reloadFlag, setReloadFlag] = useState(false);
+  const [ReloadFlag, setReloadFlag] = useState();
   const [clicked, setClicked] = useState(false);
   const location = useLocation();
 
@@ -87,10 +89,14 @@ export default function Header({
           <div className="navigation">
             <ul>
               <li className={location.pathname === "/" ? "active" : null}>
-                <Link to="/">Characters</Link>{" "}
+                <Link to="/" onClick={handleclicked}>
+                  Characters
+                </Link>
               </li>
               <li className={location.pathname === "/comics" ? "active" : null}>
-                <Link to="/comics">Comics</Link>
+                <Link to="/comics" onClick={handleclicked}>
+                  Comics
+                </Link>
               </li>
               {userToken && (
                 <li
@@ -98,12 +104,16 @@ export default function Header({
                     location.pathname === "/favorites" ? "active" : null
                   }
                 >
-                  <Link to="/favorites">Favoris</Link>
+                  <Link to="/favorites" onClick={handleclicked}>
+                    Favorites
+                  </Link>
                 </li>
               )}
             </ul>
           </div>
+          {username && <span className="user-name">Hi! {username}</span>}
           <div className="authentification-block">
+            <h3>Authentification</h3>
             {userToken ? (
               <div className="authent-block">
                 <button
@@ -112,10 +122,10 @@ export default function Header({
                     setUserToken("");
                     setuserId("");
                     setUserfavList([]);
-
                     Cookies.remove("token");
                     Cookies.remove("id");
                     navigate("/");
+                    handleclicked();
                   }}
                 >
                   Sign out
@@ -124,31 +134,53 @@ export default function Header({
             ) : (
               <div className="to-authent-block">
                 <div className="sinLog">
-                  <Link to="/signup">Sign up</Link>
+                  <Link to="/signup" onClick={handleclicked}>
+                    Sign up
+                  </Link>
                 </div>
                 <div className="sinLog">
-                  <Link to="/login">Log in</Link>
+                  <Link to="/login" onClick={handleclicked}>
+                    Log in
+                  </Link>
                 </div>
               </div>
             )}
           </div>
         </div>
         <div id="mobile" onClick={handleclicked}>
-          <i id="bar">
-            {clicked ? (
-              <FontAwesomeIcon
-                icon="xmark"
-                style={{ color: "red" }}
-                className="fas fa-times"
-              />
-            ) : (
-              <FontAwesomeIcon
-                icon="bars"
-                style={{ color: "red" }}
-                className="fas fa-bars"
-              />
-            )}
-          </i>
+          {clicked ? (
+            <i id="bar" className="fixed">
+              {clicked ? (
+                <FontAwesomeIcon
+                  icon="xmark"
+                  style={{ color: "red" }}
+                  className="fas fa-times"
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon="bars"
+                  style={{ color: "red" }}
+                  className="fas fa-bars"
+                />
+              )}
+            </i>
+          ) : (
+            <i id="bar">
+              {clicked ? (
+                <FontAwesomeIcon
+                  icon="xmark"
+                  style={{ color: "red" }}
+                  className="fas fa-times"
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon="bars"
+                  style={{ color: "red" }}
+                  className="fas fa-bars"
+                />
+              )}
+            </i>
+          )}
         </div>
         <SearchBar
           location={location.pathname}

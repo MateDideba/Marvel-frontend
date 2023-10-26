@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   gap: 80px;
 
-  padding: 100px 10px;
+  padding: 25px 10px;
 }
 
 .comics-card {
@@ -17,10 +17,6 @@
   justify-content: space-between;
   background-color: rgb(211, 211, 211);
   border-radius: 6px;
-}
-
-.comics-card:hover {
-  margin-top: -5px;
 }
 
 .comics-card img {

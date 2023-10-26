@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 60px;
-  padding: 100px 10px;
+  padding: 25px 10px;
 }
 
 .hero-card {

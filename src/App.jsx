@@ -27,6 +27,7 @@ function App() {
   const [searchWord, setsearchWord] = useState("");
   const [UserfavList, setUserfavList] = useState([]);
   const [data, setdata] = useState([]);
+  const [username, setUsername] = useState("");
 
   const [isLoading, setisLoading] = useState(true);
 
@@ -62,6 +63,8 @@ function App() {
   ) : (
     <Router>
       <Header
+        setUsername={setUsername}
+        username={username}
         searchWord={searchWord}
         setsearchWord={setsearchWord}
         data={data}
@@ -107,7 +110,13 @@ function App() {
         <Route path="hero/:id/" element={<HeroComics />} />
         <Route
           path="/signup"
-          element={<Signup setUserToken={setUserToken} setuserId={setuserId} />}
+          element={
+            <Signup
+              setUserToken={setUserToken}
+              setuserId={setuserId}
+              setUsername={setUsername}
+            />
+          }
         />
         <Route
           path="/login"
@@ -117,6 +126,7 @@ function App() {
               setuserId={setuserId}
               updateFav={updateFav}
               setUpdateFav={setUpdateFav}
+              setUsername={setUsername}
             />
           }
         />

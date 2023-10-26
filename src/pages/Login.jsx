@@ -9,6 +9,7 @@ export default function Login({
   setuserId,
   updateFav,
   setUpdateFav,
+  setUsername,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,13 +32,14 @@ export default function Login({
           }
         );
 
-        //console.log(data._id);
+        //console.log(data.username);
         // enregistrer le cookie
+
         Cookies.set("token", data.token);
         Cookies.set("id", data._id);
 
         // changer la valeur du state
-
+        setUsername(data.username);
         setUserToken(data.token);
         setuserId(data._id);
         setUpdateFav(!updateFav);
@@ -75,7 +77,7 @@ export default function Login({
               type="password"
               name="password"
               id="password"
-              placeholder="Mot de passe"
+              placeholder="Password"
               value={password}
               onChange={(event) => {
                 setErrorMessage("");

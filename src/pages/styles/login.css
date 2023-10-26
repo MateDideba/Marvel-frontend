@@ -25,6 +25,7 @@
 }
 
 .login form input {
+  padding-left: 20px;
   height: 50px;
   border-width: 0px 0px 2px 0px;
   border-color: red;
