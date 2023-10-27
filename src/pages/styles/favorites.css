@@ -16,7 +16,7 @@
 .fav-card {
   margin: 0 auto;
   border: red 2px solid;
-  width: 254px;
+  width: 260px;
   height: 480px;
   display: flex;
   flex-direction: column;

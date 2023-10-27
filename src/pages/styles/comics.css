@@ -11,7 +11,7 @@
   border: red 2px solid;
   width: 20%;
 
-  min-width: 156px;
+  min-width: 260px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
