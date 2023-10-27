@@ -17,7 +17,7 @@ body {
 
 .container {
   width: calc(100vw - 100px);
-  margin: 170px auto;
+  margin: 170px auto 20px auto;
   height: 800px;
   overflow: scroll;
 }

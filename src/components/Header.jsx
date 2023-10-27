@@ -14,8 +14,7 @@ export default function Header({
   data,
   searchWord,
   setsearchWord,
-  username,
-  setUsername,
+  Usrname,
 }) {
   // -------------------States------------------------//
   const [ReloadFlag, setReloadFlag] = useState();
@@ -102,6 +101,7 @@ export default function Header({
         </div>
         <div className={clicked ? "menu active" : "menu"}>
           <div className="navigation">
+            <h3>Navigation</h3>
             <ul>
               <li className={location.pathname === "/" ? "active" : null}>
                 <Link to="/" onClick={handleclicked}>
@@ -151,7 +151,7 @@ export default function Header({
                         icon="user"
                         style={{ color: "#ffffff" }}
                       />
-                      <span className="user-name">Hi {username}!</span>{" "}
+                      <span className="user-name">Hi {Usrname}!</span>{" "}
                       <span className="log-out">Log out</span>
                     </>
                   ) : (
@@ -160,7 +160,7 @@ export default function Header({
                         icon="user"
                         style={{ color: "#ffffff" }}
                       />
-                      <span className="user-name">Hi {username}!</span>
+                      <span className="user-name">Hi {Usrname}!</span>
                     </>
                   )}
                 </button>

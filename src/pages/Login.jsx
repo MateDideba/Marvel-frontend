@@ -9,7 +9,7 @@ export default function Login({
   setuserId,
   updateFav,
   setUpdateFav,
-  setUsername,
+  setUsrname,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,6 +42,7 @@ export default function Login({
         setUserToken(data.token);
         setuserId(data._id);
         setUpdateFav(!updateFav);
+        setUsrname(data.username);
 
         // naviguer vers la page d'accueil
         navigate("/");

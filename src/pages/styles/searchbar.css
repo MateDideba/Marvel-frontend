@@ -81,7 +81,12 @@ input:focus {
 @media screen and (max-width: 890px) {
   .search-inner {
     top: 70px;
-    right: 60px;
+    right: 82px;
+  }
+
+  .dropdown {
+    margin-top: 80px;
+    margin-right: 163px;
   }
 }
 
@@ -90,5 +95,10 @@ input:focus {
     right: 15px;
     left: 5px;
     top: 5px;
+  }
+
+  .dropdown {
+    margin-top: 14px;
+    margin-right: -10px;
   }
 }

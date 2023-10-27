@@ -28,7 +28,7 @@ function App() {
   const [searchWord, setsearchWord] = useState("");
   const [UserfavList, setUserfavList] = useState([]);
   const [data, setdata] = useState([]);
-  const [username, setUsername] = useState(Cookies.get("username") || "");
+  const [Usrname, setUsrname] = useState(Cookies.get("username") || "");
 
   const [isLoading, setisLoading] = useState(true);
 
@@ -64,8 +64,7 @@ function App() {
   ) : (
     <Router>
       <Header
-        setUsername={setUsername}
-        username={username}
+        Usrname={Usrname}
         searchWord={searchWord}
         setsearchWord={setsearchWord}
         data={data}
@@ -113,7 +112,7 @@ function App() {
           path="/signup"
           element={
             <Signup
-              setUsername={setUsername}
+              setUsrname={setUsrname}
               setUserToken={setUserToken}
               setuserId={setuserId}
             />
@@ -123,11 +122,11 @@ function App() {
           path="/login"
           element={
             <Login
+              setUsrname={setUsrname}
               setUserToken={setUserToken}
               setuserId={setuserId}
               updateFav={updateFav}
               setUpdateFav={setUpdateFav}
-              setUsername={setUsername}
             />
           }
         />

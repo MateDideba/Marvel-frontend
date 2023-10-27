@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import "./styles/signup.css";
 
-export default function Signup({ setUserToken, setuserId }) {
+export default function Signup({ setUserToken, setuserId, setUsrname }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,9 +32,11 @@ export default function Signup({ setUserToken, setuserId }) {
         Cookies.set("token", data.token);
         Cookies.set("id", data._id);
         Cookies.set("username", data.username);
+
         // Changer la val du state
         setUserToken(data.token);
         setuserId(data._id);
+        setUsrname(data.username);
 
         navigate("/");
       } catch (error) {

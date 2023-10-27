@@ -213,8 +213,8 @@ h3 {
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
     top: 0;
-    right: -300px;
-
+    right: -320px;
+    transition: 0.5s ease-in-out;
     width: 300px;
     height: 100vh;
     background-color: black;
@@ -227,10 +227,12 @@ h3 {
     color: white;
     font-size: 16px;
     padding: 20px;
+    text-align: center;
   }
 
   .fixed {
     position: fixed;
+    right: 20px;
   }
 
   .menu.active {
@@ -281,9 +283,6 @@ h3 {
   .to-authent-block div {
     width: 200px;
   }
-  .dropdown {
-    display: none;
-  }
 
   #mobile:hover {
     cursor: pointer;
@@ -293,7 +292,7 @@ h3 {
 @media screen and (max-width: 450px) {
   .menu {
     width: 100vw;
-    right: -100vw;
+    right: calc(-100vw - 6px);
     align-items: center;
   }
 }
