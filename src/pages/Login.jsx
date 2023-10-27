@@ -21,7 +21,7 @@ export default function Login({
     event.preventDefault();
 
     if (!email || !password) {
-      setErrorMessage("Veuillez remplir tous les champs !");
+      setErrorMessage("Missing email or password!");
     } else {
       try {
         const { data } = await axios.post(
@@ -34,12 +34,11 @@ export default function Login({
 
         //console.log(data.username);
         // enregistrer le cookie
-
         Cookies.set("token", data.token);
         Cookies.set("id", data._id);
+        Cookies.set("username", data.username);
 
         // changer la valeur du state
-        setUsername(data.username);
         setUserToken(data.token);
         setuserId(data._id);
         setUpdateFav(!updateFav);
@@ -48,6 +47,7 @@ export default function Login({
         navigate("/");
       } catch (error) {
         console.log("catch>>", error);
+        setErrorMessage(error.response.data.message);
       }
     }
   };
@@ -86,8 +86,7 @@ export default function Login({
             />
 
             <button>Log in</button>
-
-            {errorMessage && <p>{errorMessage}</p>}
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
           </form>
         </div>
       </div>

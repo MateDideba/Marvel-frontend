@@ -24,9 +24,23 @@ header {
 h3 {
   display: none;
 }
+.user {
+  /* border: red solid 2px; */
+
+  width: 120px;
+  display: flex;
+  gap: 20px;
+}
+
+.user svg {
+  font-size: 20px;
+  /* border: 2px blue solid; */
+  margin: 6px;
+}
 
 .user-name {
-  margin-top: 10px;
+  margin: 10px;
+  padding-top: 2px;
   color: white;
 }
 .header-block button {
@@ -34,6 +48,13 @@ h3 {
   width: 150px;
 
   object-fit: contain;
+}
+
+.log-out {
+  color: white;
+
+  padding-top: 2px;
+  margin-left: 4px;
 }
 
 .menu {
@@ -165,6 +186,9 @@ h3 {
   .authent-block button {
     width: 150px;
     transition: 0.3s;
+  }
+  .user-name {
+    display: none;
   }
 }
 /* ---------responsive-Tablets------------------- */

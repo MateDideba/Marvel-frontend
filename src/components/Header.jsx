@@ -17,12 +17,14 @@ export default function Header({
   username,
   setUsername,
 }) {
+  // -------------------States------------------------//
   const [ReloadFlag, setReloadFlag] = useState();
   const [clicked, setClicked] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  // -----------------RouterDom-----------------------//
   const location = useLocation();
-
   const navigate = useNavigate();
-
+  //------------------HandleFunctions-------------------//
   const handleclicked = () => {
     setClicked(!clicked);
   };
@@ -32,12 +34,23 @@ export default function Header({
     window.location.reload();
   };
 
+  // Function to handle mouse enter (hover) event.
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  // Function to handle mouse leave (hover out) event.
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  //---------------------SearchBarPosition------------------------//
+
   useEffect(() => {
     setReloadFlag(true);
   }, []);
 
   const baseLocation = location.pathname.match(/\/.*\//);
-
   if (baseLocation) {
     if (baseLocation[0] === "/hero/") {
       const divElement = document.querySelector(".search");
@@ -66,6 +79,8 @@ export default function Header({
       divElement.classList.remove("hidden");
     }
   }
+
+  //-------------------------HeaderRerturn------------------------------//
 
   return (
     <header>
@@ -111,7 +126,7 @@ export default function Header({
               )}
             </ul>
           </div>
-          {username && <span className="user-name">Hi! {username}</span>}
+
           <div className="authentification-block">
             <h3>Authentification</h3>
             {userToken ? (
@@ -127,8 +142,27 @@ export default function Header({
                     navigate("/");
                     handleclicked();
                   }}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                 >
-                  Sign out
+                  {isHovered ? (
+                    <>
+                      <FontAwesomeIcon
+                        icon="user"
+                        style={{ color: "#ffffff" }}
+                      />
+                      <span className="user-name">Hi {username}!</span>{" "}
+                      <span className="log-out">Log out</span>
+                    </>
+                  ) : (
+                    <>
+                      <FontAwesomeIcon
+                        icon="user"
+                        style={{ color: "#ffffff" }}
+                      />
+                      <span className="user-name">Hi {username}!</span>
+                    </>
+                  )}
                 </button>
               </div>
             ) : (

@@ -52,6 +52,7 @@
   font-size: 16px;
   font-weight: bold;
   transition: 0.3s ease-in-out;
+  width: 100%;
 }
 
 .hero-card button:hover {

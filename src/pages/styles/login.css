@@ -43,3 +43,8 @@
 .login form button:active {
   background-color: rgba(255, 0, 0, 0.59);
 }
+
+.error-message {
+  color: white;
+  font-size: 14px;
+}

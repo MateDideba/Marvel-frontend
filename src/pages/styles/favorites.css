@@ -3,6 +3,14 @@
   flex-wrap: wrap;
   gap: 80px;
   padding: 10px;
+  width: calc(100vw - 100px);
+  margin: 0 auto;
+  overflow: scroll;
+  height: 800px;
+}
+
+.fav-block::-webkit-scrollbar {
+  display: none;
 }
 
 .fav-card {

@@ -5,8 +5,9 @@ import {
   faBars,
   faMagnifyingGlass,
   faXmark,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faBars, faMagnifyingGlass, faXmark);
+library.add(faBars, faMagnifyingGlass, faXmark, faUser);
 import Cookies from "js-cookie";
 import axios from "axios";
 import "./App.css";
@@ -27,7 +28,7 @@ function App() {
   const [searchWord, setsearchWord] = useState("");
   const [UserfavList, setUserfavList] = useState([]);
   const [data, setdata] = useState([]);
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(Cookies.get("username") || "");
 
   const [isLoading, setisLoading] = useState(true);
 
@@ -112,9 +113,9 @@ function App() {
           path="/signup"
           element={
             <Signup
+              setUsername={setUsername}
               setUserToken={setUserToken}
               setuserId={setuserId}
-              setUsername={setUsername}
             />
           }
         />

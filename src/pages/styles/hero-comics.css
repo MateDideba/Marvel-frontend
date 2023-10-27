@@ -45,6 +45,10 @@
   text-align: center;
 }
 
+.title-desc div::-webkit-scrollbar {
+  display: none;
+}
+
 @media screen and (max-width: 500px) {
   .crsl {
     border: red 2px solid;

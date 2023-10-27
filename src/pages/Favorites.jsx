@@ -43,7 +43,7 @@ export default function Favorites({
   ) : (
     <main>
       <h1 className="fav-title">Your Favorites of Marvel</h1>
-      <div className="container fav-block">
+      <div className="fav-block">
         {favorisData.map((favitem) => {
           return (
             <div className="fav-card" key={favitem.favId}>

@@ -8,7 +8,6 @@ export default function Signup({ setUserToken, setuserId }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
@@ -17,7 +16,7 @@ export default function Signup({ setUserToken, setuserId }) {
     event.preventDefault();
 
     if (!email || !username || !password) {
-      setErrorMessage("Veuillez remplir tous les champs !");
+      setErrorMessage("Please fill in all fields!");
     } else {
       try {
         const { data } = await axios.post(
@@ -28,17 +27,19 @@ export default function Signup({ setUserToken, setuserId }) {
             password,
           }
         );
-
+        console.log(data.username);
         // -- Créer le cookie
         Cookies.set("token", data.token);
         Cookies.set("id", data._id);
+        Cookies.set("username", data.username);
         // Changer la val du state
         setUserToken(data.token);
         setuserId(data._id);
+
         navigate("/");
       } catch (error) {
         console.log("catch>>>", error);
-        setErrorMessage("Désolé, une erreur est survenue !");
+        setErrorMessage(error.response.data.message);
       }
     }
   };
@@ -89,7 +90,7 @@ export default function Signup({ setUserToken, setuserId }) {
 
             <button>Sign in</button>
 
-            {errorMessage && <p>{errorMessage}</p>}
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
           </form>
         </div>
       </div>
